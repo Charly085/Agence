@@ -5,16 +5,23 @@ document.getElementById('tax-form').addEventListener('submit', function(event) {
     const mandateType = document.getElementById('mandate-type').value;
     const transactionType = document.getElementById('transaction-type').value;
 
-    // Calcul de H0 en fonction de Pa
     let Ho;
-    if (Pa >= 200000) {
-        Ho = (Pa + 75000) / 26;
-    } else {
-        Ho = (9 * Pa + 624000) / 209;
+    if (transationType === 'simple') {
+        Pn = (Pa - 3000)/1,04;
+        if (Pn <= 200000) {
+            Pn = (Pa - 3000)/1,045;
+        }
     }
+    else {
+        Pn = (Pa - 3000)/1,05;
+        if (Pn <= 200000) {
+            Pn = (Pa - 3000)/1,055;
+        }
+    }
+    Ho = Pa - Pn
 
-    // Calcul de H0'
-    const HoPrime = 0.624 * Ho;
+    // Calcul de Ho'
+    const HoPrime = 0.616 * Ho;
 
     // Coefficient basé sur le type de mandat et le type de transaction
     let coefficient;
@@ -38,6 +45,11 @@ document.getElementById('tax-form').addEventListener('submit', function(event) {
 
     // Calcul du résultat
     const result = HoPrime * coefficient;
+
+    // Affichage du résultat
+    document.getElementById('result').innerText = `Net après impôt: €${result.toFixed(2)}`;
+});
+
 
     // Affichage du résultat
     document.getElementById('result').innerText = `Net après impôt: €${result.toFixed(2)}`;
