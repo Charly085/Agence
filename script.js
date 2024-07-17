@@ -7,14 +7,14 @@ document.getElementById('tax-form').addEventListener('submit', function(event) {
 
     let Pn;
     if (mandateType === 'simple') {
-        Pn = (Pa - 3000) / 1.04;
-        if (Pn <= 200000) {
-            Pn = (Pa - 3000) / 1.045;
+        Pn = (Pa - 3000) / 1.045;
+        if (Pn > 200000) {
+            Pn = (Pa - 3000) / 1.04;
         }
     } else {
-        Pn = (Pa - 3000) / 1.05;
-        if (Pn <= 200000) {
-            Pn = (Pa - 3000) / 1.055;
+        Pn = (Pa - 3000) / 1.055;
+        if (Pn > 200000) {
+            Pn = (Pa - 3000) / 1.05;
         }
     }
 
