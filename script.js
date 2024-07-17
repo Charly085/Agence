@@ -6,7 +6,7 @@ document.getElementById('tax-form').addEventListener('submit', function(event) {
     const transactionType = document.getElementById('transaction-type').value;
 
     let Ho;
-    if (transationType === 'simple') {
+    if (transactionType === 'simple') {
         Pn = (Pa - 3000)/1,04;
         if (Pn <= 200000) {
             Pn = (Pa - 3000)/1,045;
